@@ -12,8 +12,8 @@ class DataInputPageState extends State<DataInputPage> {
   TextEditingController controller = TextEditingController();
   @override
   Widget build(context) {
-    final PayloadCubit qrcs = BlocProvider.of<PayloadCubit>(context);
-    controller.text = qrcs.state.payload;
+    final PayloadCubit payloadC = BlocProvider.of<PayloadCubit>(context);
+    controller.text = payloadC.state.payload;
     return Scaffold(
         appBar: AppBar(
           title: const Text('Payload'),
@@ -21,16 +21,14 @@ class DataInputPageState extends State<DataInputPage> {
         ),
         body: Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
           Container(
-            margin: const EdgeInsets.all(20),
-            child: TextField(
-              controller: controller,
-              decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: 'Enter data'),
-            ),
-          ),
+              margin: const EdgeInsets.all(20),
+              child: TextField(
+                controller: controller,
+                decoration: const InputDecoration(border: OutlineInputBorder(), labelText: 'Enter data'),
+              )),
           ElevatedButton(
               onPressed: () {
-                qrcs.updatePayload(controller.text);
+                payloadC.updatePayload(controller.text);
                 DefaultTabController.of(context).animateTo(1);
               },
               child: const Text('Update'))

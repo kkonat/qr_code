@@ -9,9 +9,7 @@ class EditValue extends TextFormField {
           initialValue: initialValue.toString(),
           decoration: InputDecoration(labelText: label),
           keyboardType: TextInputType.number,
-          inputFormatters: <TextInputFormatter>[
-            FilteringTextInputFormatter.digitsOnly
-          ],
+          inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
           onChanged: onChanged,
         );
 }
@@ -35,26 +33,17 @@ class SettingsPage extends StatelessWidget {
             EditValue('Version', qrcs.state.version, (String value) {
               qrcs.updateSettings(Settings(version: int.parse(value)));
             }),
-            EditValue('Error correction', qrcs.state.errorCorrectionLevel,
-                (String value) {
-              qrcs.updateSettings(
-                  Settings(errorCorrectionLevel: int.parse(value)));
+            EditValue('Error correction', qrcs.state.errorCorrectionLevel, (String value) {
+              qrcs.updateSettings(Settings(errorCorrectionLevel: int.parse(value)));
             }),
           ])),
         ));
   }
 
-  // Key? key,r
-  // double? size,
   // int errorCorrectionLevel = QrErrorCorrectLevel.L,
-  // Widget Function(BuildContext, Object?)? errorStateBuilder,
   // bool constrainErrorBounds = true,
   // bool gapless = true,
-  // ImageProvider<Object>? embeddedImage,
-  // QrEmbeddedImageStyle? embeddedImageStyle,
   // String semanticsLabel = 'qr code',
   // QrEyeStyle eyeStyle = const QrEyeStyle(eyeShape: QrEyeShape.square, color: Colors.black),
   // QrDataModuleStyle dataModuleStyle = const QrDataModuleStyle(dataModuleShape: QrDataModuleShape.square, color: Colors.black),
-  // bool embeddedImageEmitsError = false,
-  // Color? foregroundColor,
 }

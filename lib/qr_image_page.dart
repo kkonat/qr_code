@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_code/cubits.dart';
+import 'package:qr_code/utils.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+
+const ENCRYPT = true;
 
 class QRImagePage extends StatefulWidget {
   const QRImagePage({super.key});
@@ -22,16 +25,16 @@ class QRImagePageState extends State<QRImagePage> {
         body: Center(
             child: Column(children: [
           Text('Payload: ${qrcs.state.payload}'),
-          QrImageView(
-              data: qrcs.state.payload,
-              size: 280,
-              // You can include embeddedImageStyle Property if you
-              //wanna embed an image from your Asset folder
-              embeddedImageStyle: const QrEmbeddedImageStyle(
-                  size: Size(
-                100,
-                100,
-              )))
+          ENCRYPT // async payload processing, use future builder
+              ? FutureBuilder(
+                  future: encrypt(qrcs.state.payload),
+                  builder: (context, snapshot) => (snapshot.hasData)
+                      ? QrImageView(
+                          data: snapshot.data.toString(),
+                          size: 380,
+                        )
+                      : const CircularProgressIndicator())
+              : QrImageView(data: qrcs.state.payload, size: 380)
         ])));
   }
 }

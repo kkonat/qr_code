@@ -6,9 +6,7 @@ class Settings {
   final bool gapless;
   final int errorCorrectionLevel;
   const Settings(
-      {this.version = QrVersions.auto,
-      this.gapless = true,
-      this.errorCorrectionLevel = QrErrorCorrectLevel.L});
+      {this.version = QrVersions.auto, this.gapless = true, this.errorCorrectionLevel = QrErrorCorrectLevel.L});
 }
 
 class SettingsCubit extends Cubit<Settings> {
@@ -26,6 +24,6 @@ class Payload {
 }
 
 class PayloadCubit extends Cubit<Payload> {
-  PayloadCubit([super.initialState = const Payload("init")]);
+  PayloadCubit([super.initialState = const Payload("")]);
   updatePayload(String newPayload) => emit(Payload(newPayload));
 }
